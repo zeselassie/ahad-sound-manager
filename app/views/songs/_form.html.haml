@@ -1,0 +1,23 @@
+= form_for @song, html: { class: "form form-horizontal song" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, class: 'form-control', required: true
+    = error_span(@song[:name])
+  .form-group
+    = f.label :format, class: 'control-label'
+    .controls
+      = f.text_field :format, class: 'form-control', required: true
+    = error_span(@song[:format])
+  .form-group
+    = f.label :length, class: 'control-label'
+    .controls
+      = f.text_field :length, class: 'form-control', required: true
+    = error_span(length_to_s(@song[:lenth]))
+  .form-group
+    = f.label :size, class: 'control-label'
+    .controls
+      = f.text_field :size, class: 'form-control', required: true
+    = error_span(@song[:size])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), songs_path, :class => 'btn btn-default'

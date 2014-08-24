@@ -1,0 +1,25 @@
+- model_class = Song
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @song.name
+%p
+  %strong= model_class.human_attribute_name(:format) + ':'
+  %br
+  = @song.format
+%p
+  %strong= model_class.human_attribute_name(:length) + ':'
+  %br
+  = length_to_s(@song.length)
+%p
+  %strong= model_class.human_attribute_name(:size) + ':'
+  %br
+  = Filesize.from(@song.size.to_s + "B").pretty
+
+
+= link_to t('.back', :default => t("helpers.links.back")), songs_path, :class => 'btn btn-default'
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_song_path(@song), :class => 'btn btn-default'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), song_path(@song), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
